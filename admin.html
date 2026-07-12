@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Admin — Gregory Olav Architectural &amp; Consulting LLC</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231d1a15'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23f6f2ea' font-family='Georgia'>GO</text></svg>" />
+  <style>
+    body { padding-top: 6rem; }
+    .admin-wrap { width: min(880px, 92%); margin: 0 auto; padding-bottom: 6rem; }
+    .admin-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 2.2rem;
+      margin-bottom: 2rem;
+    }
+    .admin-card h2 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .admin-card .hint { font-size: 0.85rem; color: var(--stone); margin-bottom: 1.4rem; }
+    .photo-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    .photo-slot { border: 1px solid var(--line); padding: 1rem; }
+    .photo-slot img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; margin-bottom: 0.8rem; background: var(--cream-deep); }
+    .photo-slot .slot-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); display: block; margin-bottom: 0.6rem; }
+    .photo-slot input[type="file"] { font-size: 0.82rem; width: 100%; border: none; }
+    .status { font-size: 0.85rem; margin-top: 1rem; min-height: 1.2em; }
+    .status.ok { color: #2e6b3f; }
+    .status.err { color: #a33a2a; }
+    .chat-log {
+      border: 1px solid var(--line);
+      background: var(--cream);
+      padding: 1.2rem;
+      height: 260px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      font-size: 0.92rem;
+    }
+    .chat-log .msg { margin-bottom: 0.9rem; }
+    .chat-log .msg .who { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bronze); display: block; }
+    .chat-row { display: flex; gap: 0.8rem; }
+    .chat-row input { flex: 1; border: 1px solid var(--line); padding: 0.7rem 0.9rem; }
+    .btn.small { padding: 0.7rem 1.3rem; }
+    .danger-note {
+      font-size: 0.8rem;
+      color: var(--stone);
+      border-left: 2px solid var(--bronze);
+      padding-left: 1rem;
+      margin-top: 1.2rem;
+    }
+    #gate { max-width: 420px; margin: 8rem auto; text-align: center; }
+    #panel { display: none; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 720px) { .photo-slots, .row-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header scrolled">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">GO</span>
+        <span class="brand-name">Site Admin<small>Owner tools — not linked publicly</small></span>
+      </a>
+      <ul class="nav-links" style="position: static; transform: none; flex-direction: row; background: none;">
+        <li><a href="index.html">← Back to Site</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Passphrase gate -->
+  <div id="gate" class="admin-wrap">
+    <div class="admin-card">
+      <h2 class="serif">Owner access</h2>
+      <p class="hint" id="gate-hint">Enter your admin passphrase.</p>
+      <form id="gate-form">
+        <div class="field">
+          <input type="password" id="gate-pass" placeholder="Passphrase" autocomplete="current-password" style="border:1px solid var(--line); padding: 0.8rem;" />
+        </div>
+        <button class="btn small" type="submit" style="margin-top: 1rem;">Enter</button>
+        <p class="status err" id="gate-status"></p>
+      </form>
+      <p class="danger-note">This gate deters casual visitors only — it is not real security, because this is a static site with no server. Real protection comes from the GitHub token (which never leaves your browser) being required to publish anything.</p>
+    </div>
+  </div>
+
+  <!-- Admin panel -->
+  <main id="panel" class="admin-wrap">
+
+    <section class="admin-card">
+      <span class="eyebrow">Identity</span>
+      <h2>Owner name</h2>
+      <p class="hint">Changes the name everywhere it appears across the site — header, navigation, headings, quotes, and footer.</p>
+      <div class="field">
+        <label for="owner-name">Display name</label>
+        <input type="text" id="owner-name" placeholder="Gregory Olav" />
+      </div>
+    </section>
+
+    <section class="admin-card">
+      <span class="eyebrow">Photography</span>
+      <h2>Owner photos</h2>
+      <p class="hint">These photos appear on the Home page and the owner's page. Upload a replacement to change them everywhere at once.</p>
+      <div class="photo-slots">
+        <div class="photo-slot">
+          <span class="slot-label">Portrait — hero &amp; owner page</span>
+          <img id="preview-portrait" src="assets/images/gregory-olav-portrait.jpeg" alt="Portrait preview" />
+          <input type="file" id="file-portrait" accept="image/jpeg,image/png,image/webp" />
+        </div>
+        <div class="photo-slot">
+          <span class="slot-label">Consulting — home teaser &amp; owner page</span>
+          <img id="preview-consulting" src="assets/images/gregory-olav-consulting.jpeg" alt="Consulting photo preview" />
+          <input type="file" id="file-consulting" accept="image/jpeg,image/png,image/webp" />
+        </div>
+      </div>
+    </section>
+
+    <section class="admin-card">
+      <span class="eyebrow">AI Assistant</span>
+      <h2>ChatGPT assistant</h2>
+      <p class="hint">Type an instruction in plain English — e.g. <em>"change my name to Gregor Olavsen"</em> — and the assistant will stage the change for you. Uses your own OpenAI API key, sent directly from your browser to OpenAI.</p>
+      <div class="row-2">
+        <div class="field">
+          <label for="openai-key">OpenAI API key</label>
+          <input type="password" id="openai-key" placeholder="sk-..." autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="openai-model">Model</label>
+          <input type="text" id="openai-model" value="gpt-4o-mini" />
+        </div>
+      </div>
+      <div class="chat-log" id="chat-log">
+        <div class="msg"><span class="who">Assistant</span>Hello! Tell me what you'd like to change — for example "change my name to …". I can also answer questions about how this admin page works.</div>
+      </div>
+      <div class="chat-row">
+        <input type="text" id="chat-input" placeholder="Type an instruction…" />
+        <button class="btn small" id="chat-send" type="button">Send</button>
+      </div>
+      <p class="danger-note">Your API key is kept in this browser's local storage only. Never paste it into the site's code or commit it to GitHub.</p>
+    </section>
+
+    <section class="admin-card">
+      <span class="eyebrow">Save &amp; Publish</span>
+      <h2>Apply your changes</h2>
+      <p class="hint"><strong>Preview</strong> applies changes in this browser only, so you can check the site first. <strong>Publish</strong> commits them to GitHub so the live site updates for everyone.</p>
+      <div class="row-2">
+        <div class="field">
+          <label for="gh-repo">GitHub repository</label>
+          <input type="text" id="gh-repo" value="ojibaroland/Architecturalsite" />
+        </div>
+        <div class="field">
+          <label for="gh-branch">Branch</label>
+          <input type="text" id="gh-branch" value="main" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="gh-token">GitHub token (fine-grained, Contents: read &amp; write on this repo)</label>
+        <input type="password" id="gh-token" placeholder="github_pat_…" autocomplete="off" />
+      </div>
+      <div class="btn-row" style="margin-top: 1.4rem;">
+        <button class="btn ghost small" id="btn-preview" type="button">Preview in this Browser</button>
+        <button class="btn small" id="btn-publish" type="button">Publish to Live Site <span class="arrow">→</span></button>
+        <button class="btn ghost small" id="btn-discard" type="button">Discard Draft</button>
+      </div>
+      <p class="status" id="publish-status"></p>
+      <p class="danger-note">Create the token at GitHub → Settings → Developer settings → Fine-grained tokens. Give it access to <em>only</em> this repository with <em>Contents: Read and write</em> permission, and set an expiry. It is stored in this browser's local storage only.</p>
+    </section>
+
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
