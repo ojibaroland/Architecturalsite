@@ -53,7 +53,7 @@ if (form) {
         data.get("location") || "—"
       }\nService: ${data.get("service") || "—"}\n\n${data.get("message")}`
     );
-    window.location.href = `mailto:inquiries@gregoryolav.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:inquiries@olavarchitectural.com?subject=${subject}&body=${body}`;
   });
 }
 
