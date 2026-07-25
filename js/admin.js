@@ -4,12 +4,12 @@
    ever written into the site's code. */
 
 const LS = {
-  passHash: "go-admin-pass-hash",
-  draft: "go-site-config-draft",
-  openaiKey: "go-openai-key",
-  ghToken: "go-gh-token",
-  ghRepo: "go-gh-repo",
-  ghBranch: "go-gh-branch",
+  passHash: "hsg-admin-pass-hash",
+  draft: "hsg-site-config-draft",
+  openaiKey: "hsg-openai-key",
+  ghToken: "hsg-gh-token",
+  ghRepo: "hsg-gh-repo",
+  ghBranch: "hsg-gh-branch",
 };
 
 const $ = (id) => document.getElementById(id);
@@ -22,12 +22,12 @@ async function sha256(text) {
 /* ---------- State ---------- */
 
 let config = {
-  ownerName: "Gregory Olav",
+  ownerName: "Andrew Halland",
   images: {
-    portrait: "assets/images/gregory-olav-portrait.jpeg",
-    consulting: "assets/images/gregory-olav-consulting.jpeg",
+    portrait: "assets/images/owner-portrait.jpeg",
+    consulting: "assets/images/owner-consulting.jpeg",
   },
-  version: 1,
+  version: 2,
 };
 
 // Newly uploaded photos waiting to be published: { portrait: {file, dataUrl}, … }
@@ -204,7 +204,7 @@ $("btn-publish").addEventListener("click", async () => {
 
 /* ---------- ChatGPT assistant (owner's own OpenAI API key) ---------- */
 
-const SYSTEM_PROMPT = `You are the admin assistant for the website of an architectural firm.
+const SYSTEM_PROMPT = `You are the admin assistant for the website of an architecture and construction engineering firm.
 The admin panel can change two things: the owner's display name, and the owner's two photos ("portrait" and "consulting" — photos must be uploaded by hand with the file pickers; you cannot change them yourself).
 Always respond with a JSON object: {"reply": "<short friendly message to the owner>", "actions": [ ... ]}.
 Supported actions: {"type": "set_owner_name", "value": "<new name>"}.

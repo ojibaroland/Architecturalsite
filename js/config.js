@@ -5,7 +5,7 @@
   let config = null;
 
   try {
-    const draft = localStorage.getItem("go-site-config-draft");
+    const draft = localStorage.getItem("hsg-site-config-draft");
     if (draft) config = JSON.parse(draft);
   } catch (_) { /* ignore corrupt draft */ }
 

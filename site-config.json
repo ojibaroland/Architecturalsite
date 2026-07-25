@@ -1,8 +1,8 @@
 {
-  "ownerName": "Gregory Olav",
+  "ownerName": "Andrew Halland",
   "images": {
-    "portrait": "assets/images/gregory-olav-portrait.jpeg",
-    "consulting": "assets/images/gregory-olav-consulting.jpeg"
+    "portrait": "assets/images/owner-portrait.jpeg",
+    "consulting": "assets/images/owner-consulting.jpeg"
   },
-  "version": 1
+  "version": 2
 }

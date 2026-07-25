@@ -53,7 +53,8 @@ if (form) {
         data.get("location") || "—"
       }\nService: ${data.get("service") || "—"}\n\n${data.get("message")}`
     );
-    window.location.href = `mailto:inquiries@olavarchitectural.com?subject=${subject}&body=${body}`;
+    // PLACEHOLDER EMAIL: replace with the client's real business email before launch.
+    window.location.href = `mailto:inquiries@hallandstructuralgroup.com?subject=${subject}&body=${body}`;
   });
 }
 
