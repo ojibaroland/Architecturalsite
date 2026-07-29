@@ -54,7 +54,7 @@ if (form) {
       }\nService: ${data.get("service") || "—"}\n\n${data.get("message")}`
     );
     // PLACEHOLDER EMAIL: replace with the client's real business email before launch.
-    window.location.href = `mailto:inquiries@hallandstructuralgroup.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:inquiries@georgebmagnus.com?subject=${subject}&body=${body}`;
   });
 }
 

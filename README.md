@@ -1,6 +1,6 @@
-# Halland Structural Group — Website
+# George B Magnus Structural Group — Website
 
-Marketing site for **Halland Structural Group**, the architecture and construction engineering practice of **Andrew Jonas Halland**, based in Lawton, Oklahoma.
+Marketing site for **George B Magnus Structural Group**, the architecture and construction engineering practice of **George B Magnus**, based in Lawton, Oklahoma.
 
 > **Demo status:** biography copy, project cards, photos, and the contact email are
 > placeholders, marked with `<!-- PLACEHOLDER ... -->` comments in the HTML. Replace them
@@ -15,7 +15,7 @@ Marketing site for **Halland Structural Group**, the architecture and constructi
 | Home | `index.html` | Hero, services overview, one-firm story, featured work, principal teaser |
 | Services | `services.html` | Design, structural/construction engineering, and construction delivery — plus the five-step process |
 | Projects | `projects.html` | Representative concept studies with illustrated project cards |
-| Andrew Halland | `andrew-halland.html` | Principal page: about, philosophy, areas of practice, capabilities |
+| George B Magnus | `george-magnus.html` | Principal page: about, philosophy, areas of practice, capabilities |
 | Contact | `contact.html` | Locations (Lawton, OK & Milton, MA) and an inquiry form |
 | Admin | `admin.html` | Owner-only panel (unlinked): change name/photos, ChatGPT assistant, publish via GitHub |
 

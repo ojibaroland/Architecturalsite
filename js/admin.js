@@ -22,7 +22,7 @@ async function sha256(text) {
 /* ---------- State ---------- */
 
 let config = {
-  ownerName: "Andrew Halland",
+  ownerName: "George B Magnus",
   images: {
     portrait: "assets/images/owner-portrait.jpeg",
     consulting: "assets/images/owner-consulting.jpeg",
